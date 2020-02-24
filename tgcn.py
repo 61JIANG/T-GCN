@@ -58,6 +58,7 @@ class gru(nn.Module):
             output, hn = self.gru(x[i])
             temp.append(output[self.num_timestep_input - 1])
         temp = torch.cat(temp, dim=0).reshape(x.shape[0], x.shape[2], self.out_features)
+
         temp = F.relu(temp.permute(1, 0, 2))
         return temp
 
